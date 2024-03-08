@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SpellingBee:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpellingBee_jar</output-path>
+    <root id="archive" name="SpellingBee.jar">
+      <element id="module-output" name="SpellingBee" />
+    </root>
+  </artifact>
+</component>
