@@ -86,6 +86,23 @@ public class GameLogic {
         return GuessResponse.OK;
     }
 
+    public static int getPossibleWords() {
+        int count = 0;
+        for (String word : GameDictionary.words) {
+            if (word.length() < 4) continue;
+            boolean valid = true;
+            for (int i = 0; i < word.length(); i++) {
+                String letter = word.substring(i, i + 1);
+                if (!rootWord.contains(letter) && !requiredLetter.equals(letter)) {
+                    valid = false;
+                    break;
+                }
+            }
+            if (valid) count++;
+        }
+        return count;
+    }
+
     public static void newGame() {
         guesses.clear();
         score = 0;

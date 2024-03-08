@@ -9,10 +9,9 @@ public class GUI {
     private static JTextField inputBox;
     private static JButton[] stdLetterButtons;
     private static JButton reqLetterButton;
-
     private static JPanel wordsPanel;
-
     private static JLabel scoreLabel;
+    private static JLabel wordCountLabel;
 
     // ========================== Private Methods ========================== //
     private static void shuffleButtons() {
@@ -46,6 +45,7 @@ public class GUI {
         }
 
         scoreLabel.setText("Score: " + GameLogic.getScore());
+        wordCountLabel.setText(GameLogic.getGuesses().size() + " / " + GameLogic.getPossibleWords());
     }
 
     // ========================== Action Listeners ========================== //
@@ -126,6 +126,11 @@ public class GUI {
         scoreLabel.setText("Score: 0");
         scoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         topBar.add(scoreLabel, BorderLayout.CENTER);
+
+        wordCountLabel = new JLabel();
+        wordCountLabel.setText("? / ?");
+        wordCountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        topBar.add(wordCountLabel, BorderLayout.EAST);
 
         JButton newGame = new JButton();
         newGame.setText("New");
@@ -226,5 +231,7 @@ public class GUI {
 
         frame.add(actionButtons);
         frame.setVisible(true);
+
+        updateGameInfo();
     }
 }
