@@ -124,12 +124,12 @@ public class GUI {
 
         scoreLabel = new JLabel();
         scoreLabel.setText("Score: 0");
-        scoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         topBar.add(scoreLabel, BorderLayout.CENTER);
 
         wordCountLabel = new JLabel();
         wordCountLabel.setText("? / ?");
-        wordCountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        wordCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
         topBar.add(wordCountLabel, BorderLayout.EAST);
 
         JButton newGame = new JButton();
