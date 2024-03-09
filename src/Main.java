@@ -16,7 +16,7 @@ public class Main {
             filePath = Path.of(filePicker.getDirectory(), filePicker.getFile());
         }
 
-        GameDictionary.importWords(filePath);
+        GameLogic.importWords(filePath);
         GameLogic.newGame();
         GUI.initialize();
     }

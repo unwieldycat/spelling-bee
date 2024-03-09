@@ -1,10 +1,14 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+
 public class GameLogic {
     private static int score = 0;
     private static String rootWord;
     private static String requiredLetter;
-
     private static final ArrayList<String> guesses = new ArrayList<>();
+    private static final ArrayList<String> words = new ArrayList<>();
 
     /**
      * Get the number of letters in a word
@@ -29,7 +33,7 @@ public class GameLogic {
     private static void generateRootWord() {
         ArrayList<String> sevenCharWords = new ArrayList<>();
 
-        for (String word : GameDictionary.words) {
+        for (String word : words) {
             if (word.length() != 7) continue;
 
             boolean uniqueChars = true;
@@ -73,7 +77,7 @@ public class GameLogic {
         word = word.toLowerCase();
 
         if (word.length() < 4) return GuessResponse.NOT_FOUR;
-        if (!GameDictionary.contains(word)) return GuessResponse.INVALID_WORD;
+        if (!words.contains(word)) return GuessResponse.INVALID_WORD;
         if (!word.contains(GameLogic.getRequiredLetter())) return GuessResponse.MISSING_REQ_CHAR;
         if (guesses.contains(word)) return GuessResponse.ALREADY_GUESSED;
 
@@ -88,7 +92,7 @@ public class GameLogic {
 
     public static int getPossibleWords() {
         int count = 0;
-        for (String word : GameDictionary.words) {
+        for (String word : words) {
             if (word.length() < 4) continue;
             boolean valid = true;
             for (int i = 0; i < word.length(); i++) {
@@ -101,6 +105,28 @@ public class GameLogic {
             if (valid) count++;
         }
         return count;
+    }
+
+    /**
+     * Create dictionary from file
+     * @param path Path to file
+     */
+    public static void importWords(Path path) {
+        if (!Files.exists(path)) {
+            System.out.println("File at " + path + " doesn't exist!");
+            return;
+        }
+
+        try {
+            words.addAll(Files.readAllLines(path));
+        } catch(IOException e) {
+            System.out.println("IOException occurred: " + e.getMessage());
+            System.exit(1);
+        } catch(SecurityException e) {
+            System.out.println("SecurityException occurred: " + e.getMessage());
+            System.out.println("Did you allow Java to access the directory?");
+            System.exit(1);
+        }
     }
 
     public static void newGame() {
