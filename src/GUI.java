@@ -189,6 +189,7 @@ public class GUI {
         for (int i = 0; i < 7; i++) {
             JButton button = new JButton();
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.setMargin(new Insets(0, 0, 0, 0));
             button.setMinimumSize(new Dimension(40, 40));
             button.setMaximumSize(new Dimension(40, 40));
             button.setPreferredSize(new Dimension(40, 40));
