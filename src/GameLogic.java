@@ -114,7 +114,7 @@ public class GameLogic {
     public static void importWords(Path path) {
         if (!Files.exists(path)) {
             System.out.println("File at " + path + " doesn't exist!");
-            return;
+            System.exit(1);
         }
 
         try {
